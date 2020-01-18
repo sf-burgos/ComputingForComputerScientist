@@ -19,4 +19,6 @@ def productoPunto(A,A2):
     r[0]= A[0]*A2[0];
     r[1]= A[1]*A2[1];
     return r[0]+r[1];
+def sebas();
+    return null
 main()
