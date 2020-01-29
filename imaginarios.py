@@ -57,7 +57,7 @@ def division(A,A2):
     denominador = (A2[0]**2)+(A2[1]**2)
     ent = numerador[0]/denominador
     imag = numerador[1]/denominador
-    return ent,imag
+    return [ent,imag]
 
 
 def division2(a,b):
@@ -69,7 +69,7 @@ def division2(a,b):
     abajo = (b[0]**2)+(b[1]**2)
     ent = arriba[0]/abajo
     imag = arriba[1]/abajo
-    return ent,imag
+    return [ent,imag]
 
 
 def conjugado(A):
@@ -86,7 +86,7 @@ def modulo(A):
     PreCondicion: dos arreglos de la forma A[n1,n2] donde n1 es la parte reales y n2 es la parte imaginaria
     Post: un arreglo forma R[n3,n4] donde estara el modulo real en n3 y la suma imaginaria en n4
     """
-    res=round(((A[0]**2)+(A[1]**2))**0.5,2)
+    res=((A[0]**2)+(A[1]**2))**0.5
     return res
 
 
@@ -95,8 +95,8 @@ def fase(a):
     PreCondicion: dos arreglos de la forma A[n1,n2] donde n1 es la parte reales y n2 es la parte imaginaria
     Post: un arreglo forma R[n3,n4] donde estara la fase real en n3 y la suma imaginaria en n4
     """
-    div = abs(a[1]/a[0])
-    res = math.atan2(div)
+    
+    res = math.atan2(a[0],a[1])
     return round(math.degrees(res),2)
 
 
@@ -107,7 +107,7 @@ def polar(a):
     """
     r = modulo(a)
     ang = fase(a)
-    return r,ang
+    return [r,ang]
 
 
 def cartesiano(a):
@@ -117,9 +117,19 @@ def cartesiano(a):
     """
     r = a[0]
     ang = a[1]
-    coseno = math.cos(ang)
-    seno = math.sin(ang)
+    coseno = math.cos(math.radians(ang))
+    seno = math.sin(math.radians(ang))
     first = round((r * coseno),2)
     second = round((r * seno),2)
-    return first,second
+    return [first,second]
 
+def potencia(A,e):
+    mod = modulo(A[0])
+    arg = fase(A[1])
+
+    mod = mod**e
+    arg = arg*e
+
+    return cartesiano([mod,arg])
+
+print(suma(potencia([0,0],[0,1])))
