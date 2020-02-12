@@ -1,4 +1,4 @@
-import imaginarios as p
+import libreria as p
 def mandelbrot(z,c):
     resultados=[0 for i in range (30)];
 
@@ -17,18 +17,19 @@ def mandelbrot(z,c):
 
 def funcion_f(z,c):
     return p.suma(p.potencia(z,2),c)
+
 def esta_en_mandelbrot(c):
     z=[0,0];
     contador=0;
     for i in range(30):
         contador=contador+1
-        z = funcion_f(z,c)
-        if p.modulo(z)>2.0:
+        z = funcion_f (z,c)
+        if p.modulo(z) > 2.0:
             return False, contador
 
     return True,0
 
-#print(esta_en_mandelbrot([0,1])
+print(mandelbrot([0,0],[0,1]))
+(mandelbrot([0,0],[1,1]))
 
 
-print(esta_en_mandelbrot([-3,0]))
