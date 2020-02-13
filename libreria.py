@@ -10,6 +10,7 @@ def resta(A,A2):
     r[1]= A[1]-A2[1];
     return r;
 def multiplicacion(a,b):
+    print(a,b)
     uno = a[0] * b[0];
     dos = a[0] * b[1];
     tres = a[1] * b[0];
@@ -72,8 +73,8 @@ def inversoVector(A):
 def multiplicacionDeVectores(A,a):
     r=[];
     for i in range(len(A)):
-        r.append(multiplicacion(A[i],a));
-    return r;
+        r.append(multiplicacion(A[i],a))
+    return r
 def sumaMatrices(A,B):
     r=[];
     for i in range(len(A)):
@@ -93,6 +94,7 @@ def multiplicacionPorUnEscalarYMatriz(c1,A):
         
         v=[]
         for row in range(0,len(A[0])):
+            
             v.append(multiplicacion(A[col][row],c1))
         r.append(v)
     return r
@@ -113,18 +115,27 @@ def conjugadaMatriz(A):
 def adjuntaMatriz(A):
     r=transpuestaMatriz(A);r=conjugadaMatriz(r);
     return r; 
-def productoDeDosMatrices(A,B):
-    r = [[0] * len(B[0]) for j in range(len(A))];
-    for i in range(len(A)):
-        for j in range(len(B[0])):
-            r1 = [r2[j] for r2 in B];
-            r[i][j] = multiplicacionDeVectores(A[i],r1);
-    return r;
+def productoMatricesImaginarias(m1,m2):
+    matriz = [[None] * len(m2[0]) for i in range(len(m1))]
+    for i in range(len(m1)):
+        for j in range(len(m2[0])):
+            columna = [row[j] for row in m2]
+            matriz[i][j] = productoVectoresImaginarios(m1[i],columna)
+    return matriz
+def productoVectoresImaginarios(c1,c2):
+    ini = (0,0)
+    for i in range(len(c1)):
+        suma = multiplicacion(c1[i],c2[i])
+        ini = suma(ini,suma)
+    return ini
 def AccionMatrizSobreVector(A,a):
     r = [];
     for i in range(len(A)):
-        r.append(multiplicacionDeVectores(a,A[i]));
+##        print(A[i],a)
+        r.append(multiplicacion(a,A[i]));
     return r;
+
+
 def productoInterno(a,b):
     r = [0,0]
     for i in range(len(a)):
@@ -144,17 +155,18 @@ def distanciaEntreDosVectores(a,b):
     for i in range(len(a)):
         for j in range(len(b[0])):
             resta = b[i][j]-a[i][j];
-            s+= resta**2;
+            r+= resta**2;
     r = r**0.5;
-    return r;
+    return round(r,2);
 def unitariaMatriz(A):
-    M=[[(1,0) if j==1 else (0,0) for j in range(len(A))]for i in range(len(A))]
+    M = [[(1,0) if j==1 else (0,0) for j in range(len(A))]for i in range(len(A))]
     deberiaSerUnitaria = True;
     for i in range(len(A)):
         if (len(A)!=len(A[i])):
             return "ERROR, las dimensiones deben ser n*n, no n*m, revise"
-    if (productoDeDosMatrices(A, adjuntaMatriz(A)==M)): return deberiaSerUnitaria;
+    if (productoDeDosMatrices(A, adjuntaMatriz(A))==M): return deberiaSerUnitaria;
     else:
+        deberiaSerUnitaria = False;
         return False;
 def hermitianaMatriz(A):
     h = adjuntaMatriz(A);
@@ -165,14 +177,16 @@ def productoTensorial(A,B):
     return None;
     
 
+#print(unitariaMatriz([[[1/1.41,0],[0,1/1.41]],[[0,1/1.41],[1/1.41,0]]]))
+##print(hermitianaMatriz([[[3,0],[2,-1],[0,-3]],[[2,1],[0,0],[1,-1]],[[0,3],[1,1],[0,0]]]))
+##print(hermitianaMatriz([[[1,0],[3,-1]],[[3,1],[0,1]]]))
 
 
 
-print(productoDeDosMatrices([[[-6,2],[0,6],[7,2]],[[6,9],[7,7],[-6,9]],[[5,8],[-6,8],[6,9]]],[[[-6,2],[0,6],[7,2]],[[6,9],[7,7],[-6,9]],[[5,8],[-6,8],[6,9]]]))
 
-
-
-
+##print(AccionMatrizSobreVector([[[-1,5],[1,-7],[-6,3]],
+##                             [[-3,-9],[2,-5],[-1,10]],
+##                             [[-6,5],[6,-5],[3,-2]]],[[1,-3],[4,3],[-3,1]]))
 
 
 

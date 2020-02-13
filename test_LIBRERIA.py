@@ -47,9 +47,10 @@ def test_productoDeDosMatrices():
 def test_AccionMatrizSobreVector():
     assert c.AccionMatrizSobreVector([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
 def test_normaVector():
-    assert c.normaVector([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
+    assert c.normaVector([[4,5],[3,1],[0,-7]])==10.0, "DeberiaSer 10.0"
 def test_distanciaEntreDosVectores():
-    assert c.distanciaEntreDosVectores([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
+    assert c.distanciaEntreDosVectores([[2,7],[4,-1],[2,-4]],[[7,8],[2,-8],[1,4]])==12.0, "DeberiaSer 12"
+    assert c.distanciaEntreDosVectores([[9,-7],[-1,-6]],[[7,-8],[5,-9]])==7.07, "DeberiaSer 7.07"
 def test_unitariaMatriz():
     assert c.unitariaMatriz([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
 def test_hermitianaMatriz():
@@ -81,10 +82,10 @@ if __name__=='__main__':
     test_transpuestaMatriz()
     test_conjugadaMatriz()
     test_adjuntaMatriz()
-##    test_productoDeDosMatrices()
+##    test_productoDeDosMatrices()#
 ##    test_AccionMatrizSobreVector()
-##    test_normaVector()
-##    test_distanciaEntreDosVectores()
+    test_normaVector()
+    test_distanciaEntreDosVectores()
 ##    test_unitariaMatriz()
 ##    test_hermitianaMatriz()
 ##    test_productoTensorial()
