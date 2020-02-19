@@ -184,7 +184,7 @@ def productoTensorialImaginario(m1,m2):
         for k in range(len(m2)):
             matriz.append(matM[k])
     return matriz
-print(productoTensorialImaginario([[[1,1],[0,0]],[[1,0],[0,1]]],[[[-1,2],[-2,-2],[0,2]],[[2,3],[3,1],[2,2]],[[-2,1],[1,-1],[2,1]]]))
+##print(productoTensorialImaginario([[[1,1],[0,0]],[[1,0],[0,1]]],[[[-1,2],[-2,-2],[0,2]],[[2,3],[3,1],[2,2]],[[-2,1],[1,-1],[2,1]]]))
 ##print(unitariaMatriz([[[1/math.sqrt(2),0]],[[0,1/math.sqrt(2)],[[0,1/math.sqrt(2)]],[[1/math.sqrt(2),0]]]))
 ##print(AccionMatrizSobreVector([[[-1,5],[1,-7],[-6,3]],[[-3,-9],[2,-5],[1,-10]],[[-6,5],[6,-5],[3,-2]]],[[1,-3],[4,3],[-3,1]]))
 ##print(productoMatricesImaginarias([[[-6,2],[0,6],[7,2]],[[6,9],[7,7],[-6,-6]],[[5,8],[-6,8],[6,9]]],[[[9,-6],[-3,-4],[5,-2]],[[3,6],[-1,-5],[0,-5]],[[9,9],[8,-4],[-8,-4]]]))
