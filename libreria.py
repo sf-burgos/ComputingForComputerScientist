@@ -1,6 +1,6 @@
 import math;
 def suma(A,A2):
-    r=[-1,-1];
+    r=[0,0];
     r[0]= A[0]+A2[0];
     r[1]= A[1]+A2[1];
     return r;
@@ -10,7 +10,6 @@ def resta(A,A2):
     r[1]= A[1]-A2[1];
     return r;
 def multiplicacion(a,b):
-    print(a,b)
     uno = a[0] * b[0];
     dos = a[0] * b[1];
     tres = a[1] * b[0];
@@ -123,19 +122,18 @@ def productoMatricesImaginarias(m1,m2):
             matriz[i][j] = productoVectoresImaginarios(m1[i],columna)
     return matriz
 def productoVectoresImaginarios(c1,c2):
-    ini = (0,0)
+    ini = [0,0]
     for i in range(len(c1)):
-        suma = multiplicacion(c1[i],c2[i])
-        ini = suma(ini,suma)
+        
+        sumau = multiplicacion(c1[i],c2[i])
+        #print(suma)
+        ini = suma(ini,sumau)
     return ini
 def AccionMatrizSobreVector(A,a):
     r = [];
     for i in range(len(A)):
-##        print(A[i],a)
-        r.append(multiplicacion(a,A[i]));
+        r.append(productoVectoresImaginarios(a,A[i]));
     return r;
-
-
 def productoInterno(a,b):
     r = [0,0]
     for i in range(len(a)):
@@ -164,7 +162,7 @@ def unitariaMatriz(A):
     for i in range(len(A)):
         if (len(A)!=len(A[i])):
             return "ERROR, las dimensiones deben ser n*n, no n*m, revise"
-    if (productoDeDosMatrices(A, adjuntaMatriz(A))==M): return deberiaSerUnitaria;
+    if (productoMatricesImaginarias(A, adjuntaMatriz(A))==M): return deberiaSerUnitaria;
     else:
         deberiaSerUnitaria = False;
         return False;
@@ -173,10 +171,23 @@ def hermitianaMatriz(A):
     if h == A:
         return True;
     return False;
-def productoTensorial(A,B):
-    return None;
-    
 
+def productoTensorialImaginario(m1,m2):
+    matriz = []
+    for i in range(len(m1)):
+        matM = [[]] *len(m2)
+        for j in range(len(m1[i])):
+            m3 = multiplicacionPorUnEscalarYMatriz(m1[i][j],m2)
+            for k in range(len(m2)):
+                
+                matM[k] = matM[k] + m3[k]
+        for k in range(len(m2)):
+            matriz.append(matM[k])
+    return matriz
+print(productoTensorialImaginario([[[1,1],[0,0]],[[1,0],[0,1]]],[[[-1,2],[-2,-2],[0,2]],[[2,3],[3,1],[2,2]],[[-2,1],[1,-1],[2,1]]]))
+##print(unitariaMatriz([[[1/math.sqrt(2),0]],[[0,1/math.sqrt(2)],[[0,1/math.sqrt(2)]],[[1/math.sqrt(2),0]]]))
+##print(AccionMatrizSobreVector([[[-1,5],[1,-7],[-6,3]],[[-3,-9],[2,-5],[1,-10]],[[-6,5],[6,-5],[3,-2]]],[[1,-3],[4,3],[-3,1]]))
+##print(productoMatricesImaginarias([[[-6,2],[0,6],[7,2]],[[6,9],[7,7],[-6,-6]],[[5,8],[-6,8],[6,9]]],[[[9,-6],[-3,-4],[5,-2]],[[3,6],[-1,-5],[0,-5]],[[9,9],[8,-4],[-8,-4]]]))
 #print(unitariaMatriz([[[1/1.41,0],[0,1/1.41]],[[0,1/1.41],[1/1.41,0]]]))
 ##print(hermitianaMatriz([[[3,0],[2,-1],[0,-3]],[[2,1],[0,0],[1,-1]],[[0,3],[1,1],[0,0]]]))
 ##print(hermitianaMatriz([[[1,0],[3,-1]],[[3,1],[0,1]]]))

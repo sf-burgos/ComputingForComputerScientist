@@ -43,20 +43,20 @@ def test_conjugadaMatriz():
 def test_adjuntaMatriz():
     assert c.adjuntaMatriz([[[7,7],[3,8],[8,4]],[[5,0],[8,-6],[-10,-1]]])==[[[7, -7], [5, 0]], [[3, -8], [8, 6]], [[8, -4], [-10, 1]]], "DeberiaSer [[[7, -7], [5, 0]], [[3, -8], [8, 6]], [[8, -4], [-10, 1]]]"
 def test_productoDeDosMatrices():
-    assert c.productoDeDosMatrices([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
+    assert c.productoMatricesImaginarias([[[-6,2],[0,6],[7,2]],[[6,9],[7,7],[-6,-6]],[[5,8],[-6,8],[6,9]]],[[[9,-6],[-3,-4],[5,-2]],[[3,6],[-1,-5],[0,-5]],[[9,9],[8,-4],[-8,-4]]])==[[[-33, 153], [120, 0], [-44, -22]], [[87, 0], [-26, -117], [107, 70]], [[0, 165], [147, 26], [69, -36]]], "DeberiaSer [[[-33, 153], [120, 0], [-44, -22]], [[87, 0], [-26, -117], [107, 70]], [[0, 165], [147, 26], [69, -36]]]"
 def test_AccionMatrizSobreVector():
-    assert c.AccionMatrizSobreVector([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
+    assert c.AccionMatrizSobreVector([[[-1,5],[1,-7],[-6,3]],[[-3,-9],[2,-5],[1,-10]],[[-6,5],[6,-5],[3,-2]]],[[1,-3],[4,3],[-3,1]])==[[54, -32], [0, 17], [41, 30]], "DeberiaSer [[54, -32], [0, 17], [41, 30]]"
 def test_normaVector():
     assert c.normaVector([[4,5],[3,1],[0,-7]])==10.0, "DeberiaSer 10.0"
 def test_distanciaEntreDosVectores():
     assert c.distanciaEntreDosVectores([[2,7],[4,-1],[2,-4]],[[7,8],[2,-8],[1,4]])==12.0, "DeberiaSer 12"
     assert c.distanciaEntreDosVectores([[9,-7],[-1,-6]],[[7,-8],[5,-9]])==7.07, "DeberiaSer 7.07"
 def test_unitariaMatriz():
-    assert c.unitariaMatriz([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
+    assert c.unitariaMatriz([[[0,1],[1,0],[0,0]],[[0,0],[0,1],[1,0]],[[1,0],[1,0],[0,1]]])==False, "DeberiaSer 0,8.01"
 def test_hermitianaMatriz():
-    assert c.hermitianaMatriz([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
+    assert c.hermitianaMatriz([[[3,0],[2,-1],[0,-3]],[[2,1],[0,0],[1,-1]],[[0,3],[1,1],[0,0]]])==True, "DeberiaSer 0,8.01"
 def test_productoTensorial():
-    assert c.productoTensorial([2,2],2)==[0.0, 8.01], "DeberiaSer 0,8.01"
+    assert c.productoTensorialImaginario([[[1,1],[0,0]],[[1,0],[0,1]]],[[[-1,2],[-2,-2],[0,2]],[[2,3],[3,1],[2,2]],[[-2,1],[1,-1],[2,1]]])==[[[-3, 1], [0, -4], [-2, 2], [0, 0], [0, 0], [0, 0]], [[-1, 5], [2, 4], [0, 4], [0, 0], [0, 0], [0, 0]], [[-3, -1], [2, 0], [1, 3], [0, 0], [0, 0], [0, 0]], [[-1, 2], [-2, -2], [0, 2], [-2, -1], [2, -2], [-2, 0]], [[2, 3], [3, 1], [2, 2], [-3, 2], [-1, 3], [-2, 2]], [[-2, 1], [1, -1], [2, 1], [-1, -2], [1, 1], [-1, 2]]], "DeberiaSer [[[-3, 1], [0, -4], [-2, 2], [0, 0], [0, 0], [0, 0]], [[-1, 5], [2, 4], [0, 4], [0, 0], [0, 0], [0, 0]], [[-3, -1], [2, 0], [1, 3], [0, 0], [0, 0], [0, 0]], [[-1, 2], [-2, -2], [0, 2], [-2, -1], [2, -2], [-2, 0]], [[2, 3], [3, 1], [2, 2], [-3, 2], [-1, 3], [-2, 2]], [[-2, 1], [1, -1], [2, 1], [-1, -2], [1, 1], [-1, 2]]]"
 
 if __name__=='__main__':
     test_suma()
@@ -82,13 +82,13 @@ if __name__=='__main__':
     test_transpuestaMatriz()
     test_conjugadaMatriz()
     test_adjuntaMatriz()
-##    test_productoDeDosMatrices()#
-##    test_AccionMatrizSobreVector()
+    test_productoDeDosMatrices()
+    test_AccionMatrizSobreVector()
     test_normaVector()
     test_distanciaEntreDosVectores()
-##    test_unitariaMatriz()
-##    test_hermitianaMatriz()
-##    test_productoTensorial()
+    test_unitariaMatriz()
+    test_hermitianaMatriz()
+    test_productoTensorial()
 
     
     
