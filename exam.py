@@ -3,7 +3,8 @@ import numpy as np;
 import matplotlib.pyplot as plt;
 import copy
 from math import *;
-
+import libreria as c;
+import exam as ex;
 def main():
     v=[[[0.45,0]],[[0.05,0]],[[0.3,0]],[[0.3,0]],[[0.2,0]] ]
     clicks=10;
@@ -51,20 +52,14 @@ def sistemasProbabilisticosDinamicos(ensamblado, ens, clicks):
         for i in range(len(bandera)):
             for j in range(len(bandera[0])):
                 bandera[i][j]=c.modulo(bandera[i][j])**2
-        print(bandera[0])   
+        #print(bandera[0])   
         imprimirLosResultados(bandera[0], clicks)
         
     else:
         bandera = ens;
         for i in range(clicks):
             bandera = c.AccionMatrizSobreVector(ensamblado,ens[0])
-        
-        print(bandera)
-        print(len(bandera))
-    
-        for i in range(len(bandera)):
-            bandera[i]=c.modulo(bandera[i])**2
-        print(bandera)   
+            
         imprimirLosResultados(bandera, clicks)
 
 
@@ -87,9 +82,19 @@ def sistemasProbabilisticosDinamicos(ensamblado, ens, clicks):
 ##    for j in range(len(resultadoTensorialDeEnsamble[0])):
 ##        if resultadoTensorialDeEnsamble[i][j][0]==0.1411764705882353:
 ##            print(i,j,"hola");
-M = [[[0,0],[1/sqrt(2),0],[1/sqrt(2),0],[0,0]],[[1/sqrt(2),0],[0,0],[0,0],[-1/sqrt(2),0]],[[1/sqrt(2),0],[0,0],[0,0],[1/sqrt(2),0]],[[0,0],[-1/sqrt(2),0],[1/sqrt(2),0],[0,0]]];
-V = [[[0,0],[0,1],[0,0],[0,0]]]
+##M = [[[0,0],[1/sqrt(2),0],[1/sqrt(2),0],[0,0]],[[1/sqrt(2),0],[0,0],[0,0],[-1/sqrt(2),0]],[[1/sqrt(2),0],[0,0],[0,0],[1/sqrt(2),0]],[[0,0],[-1/sqrt(2),0],[1/sqrt(2),0],[0,0]]];
+##V = [[[0,0],[0,1],[0,0],[0,0]]]
+##
+##
+##sistemasProbabilisticosDinamicos(M,V,2);
+##
 
+N = [[[0,0],[0.61,0],[0.9,0]],[[0.5,0],[0.09,0],[0.41,0]],[[0.5,0],[0.3,0],[0.2,0]]];
+M = [[[7/34,0],[14/34,0],[4/34,0],[9/34,0]],[[15/34,0],[6/34,0],[12/34,0],[1/34,0]],[[2/34,0],[3/34,0],[13/34,0],[16/34,0]],[[10/34,0],[11/34,0],[5/34,0],[8/34,0]]];
+resultadoTensorialDeEnsamble=c.productoTensorialImaginario(M,N);
+vectorPosicionN = [[[0,0],[1,0],[0,0]]];vectorPosicionM = [[[0,0],[0,0],[1,0],[0,0]]]
 
-sistemasProbabilisticosDinamicos(M,V,2);
+resultadoTensorialDePosicion = c.productoTensorialImaginario(vectorPosicionN,vectorPosicionM);
+clicks = 4;
+ex.sistemasProbabilisticosDinamicos(resultadoTensorialDeEnsamble,resultadoTensorialDePosicion,clicks);
 
