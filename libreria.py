@@ -1,5 +1,5 @@
 import math;
-def suma(A,A2):
+def sumaImaginarios(A,A2):
     r=[0,0];
     r[0]= A[0]+A2[0];
     r[1]= A[1]+A2[1];
@@ -18,6 +18,7 @@ def multiplicacion(a,b):
     imaginaria = dos+tres;
     r=[parte_entera,imaginaria];
     return r;
+    return (res[0],res[1])
 def conjugado(A):
     r = [A[0],A[1]*-1];
     return r;
@@ -121,19 +122,24 @@ def productoMatricesImaginarias(m1,m2):
             columna = [row[j] for row in m2]
             matriz[i][j] = productoVectoresImaginarios(m1[i],columna)
     return matriz
-def productoVectoresImaginarios(c1,c2):
-    ini = [0,0]
-    for i in range(len(c1)):
-        
-        sumau = multiplicacion(c1[i],c2[i])
-        #print(suma)
-        ini = suma(ini,sumau)
-    return ini
 def AccionMatrizSobreVector(A,a):
     r = [];
     for i in range(len(A)):
         r.append(productoVectoresImaginarios(a,A[i]));
     return r;
+
+def accionMatrizSobreVector(v1,m1):
+    v = []
+    for i in range(len(m1)):    
+        v.append(productoVectoresImaginarios(v1,m1[i]))
+    return v
+def productoVectoresImaginarios(c1,c2):
+    ini = (0,0)
+    for i in range(len(c1)):
+        suma = multiplicacion(c1[i],c2[i])
+        ini = sumaImaginarios(ini,suma)
+    return ini
+
 def productoInterno(a,b):
     r = [0,0]
     for i in range(len(a)):
